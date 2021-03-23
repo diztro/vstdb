@@ -1,7 +1,11 @@
 {
   "name": "vstdb",
+  "description": "A database of virtual instruments and effects",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "@babel/core": "^7.13.10",
     "@testing-library/jest-dom": "^5.11.9",
