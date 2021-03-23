@@ -1,11 +1,24 @@
 // Override default variables before the import
 $body-bg: #ffffff;
+$purple: #b22bff;
+$dark-purple: #a200ff;
 
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
 
-h1 {
+h1{
     font-family:Arial, Helvetica, sans-serif;
     font-size:4em;
     font-weight:600;
+}
+
+a{
+    color:$purple;
+}
+a:hover{
+    color:$dark-purple;
+}
+
+.footer-heart{
+    color:$purple;
 }
