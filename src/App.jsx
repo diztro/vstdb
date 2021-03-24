@@ -1,28 +1,33 @@
 import React from 'react';
-import { VST_PLUGINS } from './Data.js';
-import {DEFAULT_STATE} from './Data.js';
+import { PLUGINS } from './Plugins.js';
 
 const PROJECT_NAME = "VSTDB"
-const DEFAULT = DEFAULT_STATE;
-const PLUGINS = VST_PLUGINS;
+let GLOBAL_COUNT = 0;
 
 class VSTDB extends React.Component {
   constructor(props){
     super(props);
-    this.state = DEFAULT
-    this.nextPlugin = this.nextPlugin.bind(this);
-  }
-
-  nextPlugin = (currentID) => {
-    for (let i = 0; i < PLUGINS.length; i += 1){
-      if (currentID === PLUGINS[i].id){
-        return this.setState({
-          object: PLUGINS[i - 1]
-        })
-      }
+    this.state = {
+      vendorName: PLUGINS[GLOBAL_COUNT].vendorName,
+      vendorID:   PLUGINS[GLOBAL_COUNT].vendorID,
+      vendorURL:  PLUGINS[GLOBAL_COUNT].vendorURL,
+      pluginName: PLUGINS[GLOBAL_COUNT].pluginName,
+      pluginDesc: PLUGINS[GLOBAL_COUNT].pluginDesc,
+      pluginCat:  PLUGINS[GLOBAL_COUNT].pluginCat,
+      pluginID:   PLUGINS[GLOBAL_COUNT].pluginID,
+      pluginIcon: PLUGINS[GLOBAL_COUNT].pluginIcon
     }
+    this.nextPlugin = this.nextPlugin.bind(this);
+    this.previousPlugin = this.previousPlugin.bind(this);
   }
 
+  nextPlugin = () => {
+    return GLOBAL_COUNT = GLOBAL_COUNT + 1;
+  }
+  previousPlugin = () => {
+    return GLOBAL_COUNT = GLOBAL_COUNT - 1;
+  }
+  
   render(){
     return (
       <div className="wrapper">
@@ -32,27 +37,31 @@ class VSTDB extends React.Component {
               <h1>{PROJECT_NAME.toLowerCase()}</h1>
             </div>
             <div className="col">
-              <nav>
-                <button><i class="fas fa-forward"></i></button>
-                <button><i class="fas fa-backward"></i></button>
-                <button><i class="fas fa-random"></i></button>
-              </nav>
+              <button onClick={this.previousPlugin}>-</button>
+              <button onClick={this.nextPlugin}>+</button>
             </div>
           </div>
         </header>
         <main>
           <div className="container-fluid">
-            <h2>{this.state.name}</h2>
-            <img src={this.state.icon} alt={this.state.name + " - " + PROJECT_NAME} />
-            <table className="table">
-              <tr><th>Item</th><th>Result</th></tr>
-              <tr><td>Name</td><td>{this.state.name}</td></tr>
-              <tr><td>Description</td><td>{this.state.description}</td></tr>
-              <tr><td>Category</td><td>{this.state.category}</td></tr>
-              <tr><td>Vendor</td><td>{this.state.vendor}</td></tr>
-              <tr><td>URL</td><td>{this.state.url}</td></tr>
-              <tr><td>ID</td><td>{this.state.id}</td></tr>
-            </table>
+            <div className="row no-gutters text-center">
+              <div className="col">
+                <h2>{this.state.pluginName}</h2>
+                <p>{this.state.pluginDesc}</p>
+                <img src={this.state.pluginIcon} alt={this.state.pluginName + " - " + PROJECT_NAME} draggable="false" />
+              </div>
+            </div>
+            <div className="row no-gutters">
+              <table className="table">
+                <tr><th>Item</th><th>Result</th></tr>
+                <tr><td>Vendor</td><td>{this.state.vendorName}</td></tr>
+                <tr><td>Vendor URL</td><td>{this.state.vendorURL}</td></tr>
+                <tr><td>Plugin Name</td><td>{this.state.pluginName}</td></tr>
+                <tr><td>Description</td><td>{this.state.pluginDesc}</td></tr>
+                <tr><td>Category</td><td>{this.state.pluginCat}</td></tr>
+                <tr><td>ID</td><td>{this.state.pluginID}</td></tr>
+              </table>
+            </div>
           </div>
         </main>
         <footer>
