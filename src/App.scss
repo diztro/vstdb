@@ -12,13 +12,16 @@ h1{
     font-weight:600;
 }
 
-a{
-    color:$purple;
-}
-a:hover{
-    color:$dark-purple;
-}
-
-.footer-heart{
-    color:$purple;
+footer{
+    a{
+        #nathandonnelly{
+            color:darksalmon;
+        }
+        #diztro{
+            color:$purple;
+        }
+        #flstudio{
+            color:orange;
+        }
+    }
 }

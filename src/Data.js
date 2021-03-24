@@ -1,3 +1,15 @@
+export const DEFAULT_STATE = [
+    {
+        name: "VSTDB",
+        description: "A Database for Virtual Instruments and Effects",
+        category: "N/A",
+        id: "6bc0c736-5724-4eeb-8922-80fa087f976f",
+        icon: "./icons/diztro/vstdb.png",
+        vendor: "Diztro",
+        developer: "bc79981a-5bf0-4242-8122-90997b18da1e",
+        url: "https://vstdb.org"
+    }
+]
 export const VST_PLUGINS = [
     {
         name: "Serum",

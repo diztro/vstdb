@@ -1,26 +1,44 @@
 import React from 'react';
+import { VST_PLUGINS } from './Data.js';
+import {DEFAULT_STATE} from './Data.js';
 
 const PROJECT_NAME = "VSTDB"
+const DEFAULT = DEFAULT_STATE;
+const PLUGINS = VST_PLUGINS;
 
 class VSTDB extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      name: "VSTDB",
-      description: "A Database for Virtual Instruments and Effects",
-      category: "N/A",
-      id: "6bc0c736-5724-4eeb-8922-80fa087f976f",
-      icon: "./icons/diztro/vstdb.png",
-      vendor: "Diztro",
-      developer: "bc79981a-5bf0-4242-8122-90997b18da1e",
-      url: "https://vstdb.org"
+    this.state = DEFAULT
+    this.nextPlugin = this.nextPlugin.bind(this);
+  }
+
+  nextPlugin = (currentID) => {
+    for (let i = 0; i < PLUGINS.length; i += 1){
+      if (currentID === PLUGINS[i].id){
+        return this.setState({
+          object: PLUGINS[i - 1]
+        })
+      }
     }
   }
+
   render(){
     return (
       <div className="wrapper">
         <header>
-          <h1>{PROJECT_NAME.toLowerCase()}</h1>
+          <div className="row no-gutters">
+            <div className="col">
+              <h1>{PROJECT_NAME.toLowerCase()}</h1>
+            </div>
+            <div className="col">
+              <nav>
+                <button><i class="fas fa-forward"></i></button>
+                <button><i class="fas fa-backward"></i></button>
+                <button><i class="fas fa-random"></i></button>
+              </nav>
+            </div>
+          </div>
         </header>
         <main>
           <div className="container-fluid">
@@ -40,7 +58,7 @@ class VSTDB extends React.Component {
         <footer>
           <div className="row no-gutters text-center">
             <div className="col">
-              <p>Made with <i className="fa fa-heart footer-heart" /> by <a href="https://nathandonnelly.com">Nathan Donnelly</a> at <a href="https://diztro.com">Diztro</a> for <a href="https://image-line.com">FL Studio</a> users</p>
+              <p>Made with <i className="fa fa-heart" /> by <a href="https://nathandonnelly.com" id="nathandonnelly">Nathan Donnelly</a> at <a href="https://diztro.com" id="diztro">Diztro</a> for <a href="https://image-line.com" id="flstudio">FL Studio</a> users</p>
             </div>
           </div>
         </footer>
