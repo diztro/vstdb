@@ -14,9 +14,9 @@ const Header = (props) => {
         <nav className="navbar navbar-expand-lg">
           <div className="col"><a href="/"><h1>{PROJECT_NAME}</h1></a></div>
           <div className="col">
-            <button onClick={props.decreaseStateValue}>-</button>
-            <button onClick={props.randomStateValue}>R</button>
-            <button onClick={props.increaseStateValue}>+</button>
+            <button onClick={props.decreaseStateValue} className="btn btn-secondary">-</button>
+            <button onClick={props.randomStateValue} className="btn btn-secondary">R</button>
+            <button onClick={props.increaseStateValue} className="btn btn-secondary">+</button>
           </div>
         </nav>
       </div>
@@ -33,29 +33,15 @@ Header.propTypes = {
   increaseStateValue: PropTypes.func.isRequired,
   randomStateValue:   PropTypes.func.isRequired
 }
-const Footer = (props) => {
-  return (
-    <footer>
-      <div className="row no-gutters">
-        <div className="col">
-          <p className="text-center">Made with <i className="fa fa-heart" /> by <a href="https://nathandonnelly.com">Nathan Donnelly</a> at <a href="https://diztro.com">Diztro</a> for <a href="https://image-line.com">FL Studio</a> users</p>
-          <p className="text-center"><i className="fa fa-copyright"/> Copyright {props.copyrightDate}</p>
-        </div>
-      </div>
-    </footer>
-  );
-}
-Footer.defaultProps = { copyrightDate: 2020 }
-Footer.propTypes = { copyrightDate: PropTypes.number.isRequired }
-
-
 
 const Display = (props) => {
   return(
     <main>
       <div className="container-fluid">
         <div className="row">
-          <span className="vstdb-component-icon-container">{props.renderPluginIcons}</span>
+          <span className="vstdb-component-icon-container">
+            {props.renderPluginIcons}
+          </span>
         </div>
         <div className="text-center">
             <img src={props.stateValuePluginIcon} alt={props.stateValuePluginName} />
@@ -67,7 +53,7 @@ const Display = (props) => {
           <table className="table">
             <thead><tr><th>Data Point</th><th>Data</th></tr></thead>
             <tbody>
-              <tr><td>Current VSTdb Position</td><td>{props.stateValueIndexNumber}</td></tr>
+              <tr><td>Current VSTdb Position</td><td>{props.stateValueIndexNumber + 1}</td></tr>
               <tr><td>Vendor Name</td><td>{props.stateValueVendorName}</td></tr>
               <tr><td>Vendor ID</td><td>{props.stateValueVendorID}</td></tr>
               <tr><td>Vendor URL</td><td><a href={props.stateValueVendorURL}>{props.stateValueVendorURL}</a></td></tr>
@@ -103,6 +89,20 @@ Display.propTypes = {
   StateValuePlugiinID:          PropTypes.string.isRequired
 }
 
+const Footer = (props) => {
+  return (
+    <footer>
+      <div className="row no-gutters">
+        <div className="col">
+          <p className="text-center">Made with <i className="fa fa-heart" /> by <a href="https://nathandonnelly.com">Nathan Donnelly</a> at <a href="https://diztro.com">Diztro</a> for <a href="https://image-line.com">FL Studio</a> users</p>
+          <p className="text-center"><i className="fa fa-copyright"/> Copyright {props.copyrightDate}</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+Footer.defaultProps = { copyrightDate: 2020 }
+Footer.propTypes = { copyrightDate: PropTypes.number.isRequired }
 
 class App extends React.Component {
   constructor(props){
@@ -157,7 +157,7 @@ class App extends React.Component {
                   stateValue: index
                 }))}
                 className="vstdb-component-icon"
-                draggable="false" />          
+                draggable="false" />
   });
 
   render(){

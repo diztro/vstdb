@@ -44,19 +44,19 @@ table{
     }
 }
 
-
 .vstdb-component-icon{
-    margin-left:-50px;
-    margin-right:-50px;
-    transition:.2s;
+    margin-left: -50px;
+    margin-right: -50px;
+    transition: .2s;
 }
 .vstdb-component-icon:hover{
-    padding-left:75px;
-    padding-right:75px;
-    transition:.2s;
+    padding-left: 75px;
+    padding-right: 75px;
+    transition: .2s;
 }
 .vstdb-component-icon-container{
-    margin:auto;
-    padding:10px;
+    margin: auto;
+    width: 80%;
+    padding: 10px;
     box-shadow: 0 2px 2px -5px lightgrey;
 }
