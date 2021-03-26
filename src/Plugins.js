@@ -60,6 +60,36 @@ export const PLUGINS = [
         pluginIcon: "./icons/database/valhalla-dsp/valhalla-vintageverb.png"   
     },
     {
+        vendorName: "Wavesfactory",
+        vendorID:   "e2c156fa-9d34-4a63-a862-1ce6c54ecce8",
+        vendorURL:  "https://wavesfactory.com",
+        pluginName: "SK10",
+        pluginDesc: "Sub Kick Simulator",
+        pluginCat:  "Misc",
+        pluginID:   "6e69e279-039f-4d5d-829d-cabe8d18a23f",
+        pluginIcon: "./icons/database/wavesfactory/sk10.png"   
+    },
+    {
+        vendorName: "Wavesfactory",
+        vendorID:   "e2c156fa-9d34-4a63-a862-1ce6c54ecce8",
+        vendorURL:  "https://wavesfactory.com",
+        pluginName: "SnareBuzz",
+        pluginDesc: "Snare Rattle Simulator",
+        pluginCat:  "Misc",
+        pluginID:   "55a6fb03-87e3-47c9-85ee-c083c791a26c",
+        pluginIcon: "./icons/database/wavesfactory/snarebuzz.png"   
+    },
+    {
+        vendorName: "Wavesfactory",
+        vendorID:   "e2c156fa-9d34-4a63-a862-1ce6c54ecce8",
+        vendorURL:  "https://wavesfactory.com",
+        pluginName: "Trackspacer",
+        pluginDesc: "32 Band Dynamic Equalizer with Sidechain",
+        pluginCat:  "Filter",
+        pluginID:   "13d0efa6-dc47-45a7-a6d4-80e6c1041b57",
+        pluginIcon: "./icons/database/wavesfactory/trackspacer.png"   
+    },
+    {
         vendorName: "Xfer Records",
         vendorID:   "e3ff48d1-63d3-4c5a-916a-1bd706aa4aff",
         vendorURL:  "https://xferrecords.com",
@@ -118,6 +148,26 @@ export const PLUGINS = [
         pluginCat:  "Misc",
         pluginID:   "88a832ca-85dc-4552-9551-246e84c7b49c",
         pluginIcon: "./icons/database/xfer-records/serum-fx.png"
+    },
+    {
+        vendorName: "XLN Audio",
+        vendorID:   "e8a53226-e0d7-4a27-969e-d4236b26329f",
+        vendorURL:  "https://xlnaudio.com",
+        pluginName: "Addictive Keys",
+        pluginDesc: "Sampled Pianos and Keyboards",
+        pluginCat:  "Misc",
+        pluginID:   "f05a6eba-1854-4241-973a-7c13a10cfc16",
+        pluginIcon: "./icons/database/xln-audio/addictive-keys.png"
+    },
+    {
+        vendorName: "XLN Audio",
+        vendorID:   "e8a53226-e0d7-4a27-969e-d4236b26329f",
+        vendorURL:  "https://xlnaudio.com",
+        pluginName: "RC-20 Retro Color",
+        pluginDesc: "Vintage Saturation",
+        pluginCat:  "Distortion",
+        pluginID:   "701d47b8-ecd7-4002-b4ac-4d17297e9bc3",
+        pluginIcon: "./icons/database/xln-audio/rc-20-retro-color.png"
     }
     // {
     //     vendorName: "Youlean",

@@ -70,7 +70,7 @@ const Display = (props) => {
               <tr><td>Current VSTdb Position</td><td>{props.stateValueIndexNumber}</td></tr>
               <tr><td>Vendor Name</td><td>{props.stateValueVendorName}</td></tr>
               <tr><td>Vendor ID</td><td>{props.stateValueVendorID}</td></tr>
-              <tr><td>Vendor URL</td><td>{props.stateValueVendorURL}</td></tr>
+              <tr><td>Vendor URL</td><td><a href={props.stateValueVendorURL}>{props.stateValueVendorURL}</a></td></tr>
               <tr><td>Plugin Name</td><td>{props.stateValuePluginName}</td></tr>
               <tr><td>Plugin Description</td><td>{props.stateValuePluginDesc}</td></tr>
               <tr><td>Plugin Category</td><td>{props.stateValuePluginCat}</td></tr>
