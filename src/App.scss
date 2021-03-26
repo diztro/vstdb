@@ -1,27 +1,42 @@
 // Override default variables before the import
 $body-bg: #ffffff;
-$purple: #b22bff;
-$dark-purple: #a200ff;
 
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
-
-h1{
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:4em;
-    font-weight:600;
+body{
+    font-family: 'Inter', sans-serif;
 }
 
-footer{
+nav{
     a{
-        #nathandonnelly{
-            color:darksalmon;
-        }
-        #diztro{
-            color:$purple;
-        }
-        #flstudio{
-            color:orange;
+        h1{
+            color: black;
+            text-decoration: none;
         }
     }
+}
+
+h1{
+    font-family: 'Inter', sans-serif;
+    font-size: 4em;
+    font-weight: 600;
+}
+
+table{
+    td{
+        width:50%;
+    }
+}
+
+
+.vstdb-component-icon{
+    margin-left:-50px;
+    margin-right:-50px;
+}
+.vstdb-component-icon:hover{
+    padding-left:75px;
+    padding-right:75px;
+}
+.vstdb-component-icon-container{
+    margin:auto;
 }
