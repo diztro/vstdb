@@ -15,13 +15,23 @@ const Header = (props) => {
           <div className="col"><a href="/"><h1>{PROJECT_NAME}</h1></a></div>
           <div className="col">
             <button onClick={props.decreaseStateValue}>-</button>
-            <button onclick={props.randomStateValue}>R</button>
+            <button onClick={props.randomStateValue}>R</button>
             <button onClick={props.increaseStateValue}>+</button>
           </div>
         </nav>
       </div>
     </header>
   );
+}
+Header.defaultProps = {
+  descreaseStateValue: -1,
+  increaseStateValue: 1,
+  randomStateValue: 1
+}
+Header.propTypes = {
+  decreaseStateValue: PropTypes.number.isRequired,
+  increaseStateValue: PropTypes.number.isRequired,
+  randomStateValue:   PropTypes.number.isRequired
 }
 const Footer = (props) => {
   return (
@@ -55,15 +65,17 @@ const Display = (props) => {
         </div>
         <div className="row no-gutters">
           <table className="table">
-            <tr><th>Data Point</th><th>Data</th></tr>
-            <tr><td>Current VSTdb Position</td><td>{props.stateValueIndexNumber}</td></tr>
-            <tr><td>Vendor Name</td><td>{props.stateValueVendorName}</td></tr>
-            <tr><td>Vendor ID</td><td>{props.stateValueVendorID}</td></tr>
-            <tr><td>Vendor URL</td><td>{props.stateValueVendorURL}</td></tr>
-            <tr><td>Plugin Name</td><td>{props.stateValuePluginName}</td></tr>
-            <tr><td>Plugin Description</td><td>{props.stateValuePluginDesc}</td></tr>
-            <tr><td>Plugin Category</td><td>{props.stateValuePluginCat}</td></tr>
-            <tr><td>Plugin ID</td><td>{props.stateValuePluginID}</td></tr>
+            <thead><tr><th>Data Point</th><th>Data</th></tr></thead>
+            <tbody>
+              <tr><td>Current VSTdb Position</td><td>{props.stateValueIndexNumber}</td></tr>
+              <tr><td>Vendor Name</td><td>{props.stateValueVendorName}</td></tr>
+              <tr><td>Vendor ID</td><td>{props.stateValueVendorID}</td></tr>
+              <tr><td>Vendor URL</td><td>{props.stateValueVendorURL}</td></tr>
+              <tr><td>Plugin Name</td><td>{props.stateValuePluginName}</td></tr>
+              <tr><td>Plugin Description</td><td>{props.stateValuePluginDesc}</td></tr>
+              <tr><td>Plugin Category</td><td>{props.stateValuePluginCat}</td></tr>
+              <tr><td>Plugin ID</td><td>{props.stateValuePluginID}</td></tr>
+            </tbody>
           </table>
         </div>
       </div>
@@ -106,32 +118,43 @@ class App extends React.Component {
       pluginIcon: "Plugin Icon",
       pluginID:   "Plugin ID"
     };
-    this.increaseValue = this.increaseValue.bind(this);
-    this.decreaseValue = this.decreaseValue.bind(this);
-    this.randomValue = this.randomValue.bind(this);
+    this.decreaseValue  = this.decreaseValue.bind(this);
+    this.increaseValue  = this.increaseValue.bind(this);
+    this.randomValue    = this.randomValue.bind(this);
+    this.indexValue     = this.indexValue.bind(this);
   }
-
-  increaseValue(){
-    return this.setState(state => ({
-      stateValue: this.state.stateValue + 1
-    }));
-  };
 
   decreaseValue(){
     if (this.state.stateValue === 0 ){
       return this.setState(state => ({
-        stateValue: 0
+        stateValue: (PLUGINS.length - 1)
       }));
     } else return this.setState(state => ({
       stateValue: this.state.stateValue - 1
     }));
-  }
+  };
 
-  randomValue(inputData){
+  increaseValue(){
+    if (this.state.stateValue < (PLUGINS.length - 1)){
+      return this.setState(state => ({
+        stateValue: this.state.stateValue + 1
+      }));
+    } else return this.setState(state => ({
+      stateValue: 0
+      }));
+  };
+
+  randomValue(){
     return this.setState(state => ({
-      stateValue: Math.floor(Math.random * inputData.length)
+      stateValue: Math.floor(Math.random() * PLUGINS.length)
     }));
-  }
+  };
+
+  indexValue(indexValue){
+    return this.setState(state => ({
+      stateValue: indexValue
+    }));
+  };
 
   render(){
     let vendorName  =   PLUGINS[this.state.stateValue].vendorName;
@@ -144,13 +167,12 @@ class App extends React.Component {
     let pluginID    =   PLUGINS[this.state.stateValue].pluginID;
 
     let renderPlugins = PLUGINS.map(function(plugin, index){
-
       return <img src={plugin.pluginIcon}
                   alt={plugin.pluginName}
+                  key={plugin.pluginID}
                   className="vstdb-component-icon"
-                  id={plugin.pluginName + "-VSTdbComponent"} draggable="false" />
-                  
-    })
+                  draggable="false" />          
+    });
 
     return (
       <div className="wrapper">
