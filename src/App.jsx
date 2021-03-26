@@ -29,9 +29,9 @@ Header.defaultProps = {
   randomStateValue: 1
 }
 Header.propTypes = {
-  decreaseStateValue: PropTypes.number.isRequired,
-  increaseStateValue: PropTypes.number.isRequired,
-  randomStateValue:   PropTypes.number.isRequired
+  decreaseStateValue: PropTypes.func.isRequired,
+  increaseStateValue: PropTypes.func.isRequired,
+  randomStateValue:   PropTypes.func.isRequired
 }
 const Footer = (props) => {
   return (
@@ -55,7 +55,7 @@ const Display = (props) => {
     <main>
       <div className="container-fluid">
         <div className="row">
-          <span className="vstdb-component-icon-container">{props.renderImages}</span>
+          <span className="vstdb-component-icon-container">{props.renderPluginIcons}</span>
         </div>
         <div className="text-center">
             <img src={props.stateValuePluginIcon} alt={props.stateValuePluginName} />
@@ -121,7 +121,6 @@ class App extends React.Component {
     this.decreaseValue  = this.decreaseValue.bind(this);
     this.increaseValue  = this.increaseValue.bind(this);
     this.randomValue    = this.randomValue.bind(this);
-    this.indexValue     = this.indexValue.bind(this);
   }
 
   decreaseValue(){
@@ -150,11 +149,16 @@ class App extends React.Component {
     }));
   };
 
-  indexValue(indexValue){
-    return this.setState(state => ({
-      stateValue: indexValue
-    }));
-  };
+  renderPlugins = PLUGINS.map((plugin, index) => {
+    return <img src={plugin.pluginIcon}
+                alt={plugin.pluginName}
+                key={plugin.pluginID}
+                onClick={() => this.setState(state => ({
+                  stateValue: index
+                }))}
+                className="vstdb-component-icon"
+                draggable="false" />          
+  });
 
   render(){
     let vendorName  =   PLUGINS[this.state.stateValue].vendorName;
@@ -164,15 +168,7 @@ class App extends React.Component {
     let pluginDesc  =   PLUGINS[this.state.stateValue].pluginDesc;
     let pluginCat   =   PLUGINS[this.state.stateValue].pluginCat;
     let pluginIcon  =   PLUGINS[this.state.stateValue].pluginIcon;
-    let pluginID    =   PLUGINS[this.state.stateValue].pluginID;
-
-    let renderPlugins = PLUGINS.map(function(plugin, index){
-      return <img src={plugin.pluginIcon}
-                  alt={plugin.pluginName}
-                  key={plugin.pluginID}
-                  className="vstdb-component-icon"
-                  draggable="false" />          
-    });
+    let pluginID    =   PLUGINS[this.state.stateValue].pluginID
 
     return (
       <div className="wrapper">
@@ -182,7 +178,7 @@ class App extends React.Component {
           increaseStateValue={this.increaseValue} />
 
         <Display
-          renderImages={renderPlugins} 
+          renderPluginIcons={this.renderPlugins}
           stateValueIndexNumber={this.state.stateValue}
           stateValueVendorName={vendorName}
           stateValueVendorID={vendorID} 
