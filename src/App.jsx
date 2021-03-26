@@ -23,8 +23,6 @@ const Header = (props) => {
     </header>
   );
 }
-
-
 const Footer = (props) => {
   return (
     <footer>
@@ -37,24 +35,28 @@ const Footer = (props) => {
     </footer>
   );
 }
-
 Footer.defaultProps = { copyrightDate: 2020 }
 Footer.propTypes = { copyrightDate: PropTypes.number.isRequired }
+
 
 
 const Display = (props) => {
   return(
     <main>
       <div className="container-fluid">
-        <div className="row no-gutters">
-          <span className="vstdb-component-icon-container">
-            {props.renderImages}
-          </span>
+        <div className="row">
+          <span className="vstdb-component-icon-container">{props.renderImages}</span>
+        </div>
+        <div className="text-center">
+            <img src={props.stateValuePluginIcon} alt={props.stateValuePluginName} />
+            <br />
+            <h2>{props.stateValuePluginName}</h2><h3>{props.stateValueVendorName}</h3>
+            <br />
         </div>
         <div className="row no-gutters">
-          <table className="table mt-5">
+          <table className="table">
             <tr><th>Data Point</th><th>Data</th></tr>
-            <tr><td>Alphabetical Order of Plugin by Vendor</td><td>{props.stateValueIndexNumber}</td></tr>
+            <tr><td>Current VSTdb Position</td><td>{props.stateValueIndexNumber}</td></tr>
             <tr><td>Vendor Name</td><td>{props.stateValueVendorName}</td></tr>
             <tr><td>Vendor ID</td><td>{props.stateValueVendorID}</td></tr>
             <tr><td>Vendor URL</td><td>{props.stateValueVendorURL}</td></tr>
@@ -68,6 +70,27 @@ const Display = (props) => {
     </main>
   );
 }
+Display.defaultProps = {
+  stateValueIndexNumber: 0,
+  stateValueVendorName:         "Diztro",
+  stateValueVendorID:           "1c21812e-881d-489a-afd9-26f705548e94",
+  stateValueVendorURL:          "https://diztro.com",
+  stateValuePluginName:         "VSTdb",
+  stateValuePluginDescription:  "VST Plugin Database for FL Studio",
+  stateValuePluginCategory:     "N/A",
+  StateValuePlugiinID:          "23f58694-940a-4406-bfd7-e3db0038b45e"
+}
+Display.propTypes = {
+  stateValueIndexNumber:        PropTypes.number.isRequired,
+  stateValueVendorName:         PropTypes.string.isRequired,
+  stateValueVendorID:           PropTypes.string.isRequired,
+  stateValueVendorURL:          PropTypes.string.isRequired,
+  stateValuePluginName:         PropTypes.string.isRequired,
+  stateValuePluginDescription:  PropTypes.string.isRequired,
+  stateValuePluginCategory:     PropTypes.string.isRequired,
+  StateValuePlugiinID:          PropTypes.string.isRequired
+}
+
 
 class App extends React.Component {
   constructor(props){
@@ -80,7 +103,7 @@ class App extends React.Component {
       pluginName: "Plugin Name",
       pluginDesc: "Plugin Description",
       pluginCat:  "Plugin Category",
-      pluginIcon:  "Plugin Icon",
+      pluginIcon: "Plugin Icon",
       pluginID:   "Plugin ID"
     };
     this.increaseValue = this.increaseValue.bind(this);
@@ -120,7 +143,8 @@ class App extends React.Component {
     let pluginIcon  =   PLUGINS[this.state.stateValue].pluginIcon;
     let pluginID    =   PLUGINS[this.state.stateValue].pluginID;
 
-    let renderPlugins = PLUGINS.map(function(plugin){
+    let renderPlugins = PLUGINS.map(function(plugin, index){
+
       return <img src={plugin.pluginIcon}
                   alt={plugin.pluginName}
                   className="vstdb-component-icon"
@@ -144,6 +168,7 @@ class App extends React.Component {
           stateValuePluginName={pluginName}
           stateValuePluginDesc={pluginDesc}
           stateValuePluginCat={pluginCat}
+          stateValuePluginIcon={pluginIcon}
           stateValuePluginID={pluginID} />
 
         <Footer copyrightDate={ todaysDate.getFullYear() }/>

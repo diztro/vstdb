@@ -3,8 +3,24 @@ $body-bg: #ffffff;
 
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
+::selection{
+    background-color:lightyellow;
+}
+::-moz-selection{
+    background-color:lightyellow;
+}
+
 body{
     font-family: 'Inter', sans-serif;
+}
+
+img{
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 nav{
@@ -36,7 +52,10 @@ table{
 .vstdb-component-icon:hover{
     padding-left:75px;
     padding-right:75px;
+    transition:.2s;
 }
 .vstdb-component-icon-container{
     margin:auto;
+    padding:10px;
+    box-shadow: 0 2px 2px -5px lightgrey;
 }
